@@ -67,15 +67,18 @@ const quotes = {
         { text: "The brave man is he who overcomes not only his enemies but his pleasures." }
     ]
 };
-//getting the elements: category//
+//getting the elements: //
 
 const category = document.getElementById("Category");
 const quoteDisplay = document.querySelector('.quote-display');
 const randomBtn = document.getElementById('random');
 const nextBtn = document.getElementById('nextQuote');
 const prevBtn = document.getElementById('prevQuote');
-let currentCategoryQuotes = [];
-let currentIndex = 0;
+
+
+const themeToggleSwitch = document.querySelector('#theme-toggle');
+const body = document.body;
+
 category.addEventListener('change', function () {
 
     let value = category.value;
@@ -103,6 +106,7 @@ category.addEventListener('change', function () {
 })
 randomBtn.addEventListener('click', function () {
     let selectedCategory = category.value;
+
     let quotesCategory = quotes[selectedCategory];
     let randomNumber = Math.floor(Math.random() * quotesCategory.length);
     let randomQuote = quotesCategory[randomNumber];
@@ -111,6 +115,9 @@ randomBtn.addEventListener('click', function () {
 
 })
 
+let currentCategoryQuotes = [];
+let currentIndex = 0;
+
 function displayQuote(index) {
     if (currentCategoryQuotes.length > 0) {
         quoteDisplay.textContent = currentCategoryQuotes[index].text;
@@ -118,14 +125,41 @@ function displayQuote(index) {
 }
 
 function updateQuotesForCategory() {
-    console.log('triggered');
+
     const selectedCategory = category.value
     currentCategoryQuotes = quotes[selectedCategory];
     currentIndex = 0;
-    displayQuote(currentIndex);
-    console.log('Quotes in selected category:', currentCategoryQuotes);
+
+
+    console.log(currentCategoryQuotes);
 
 }
 
 category.addEventListener('change', updateQuotesForCategory);
+
+//next quote//
+nextBtn.addEventListener('click', function () {
+    if (currentCategoryQuotes.length > 0) {
+        currentIndex = (currentIndex + 1) % currentCategoryQuotes.length; // Loop around
+        displayQuote(currentIndex);
+    }
+});
+
+//previous code//
+prevBtn.addEventListener('click', function () {
+    if (currentCategoryQuotes.length > 0) {
+        currentIndex = (currentIndex - 1 + currentCategoryQuotes.length) % currentCategoryQuotes.length; // Loop around
+        displayQuote(currentIndex);
+    }
+});
+
+
+themeToggleSwitch.addEventListener('change', function () {
+
+    if (this.checked) {
+        body.classList.add('dark-mode');
+    } else {
+        body.classList.remove('dark-mode');
+    }
+});
 
