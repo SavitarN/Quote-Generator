@@ -105,13 +105,18 @@ category.addEventListener('change', function () {
 
 })
 randomBtn.addEventListener('click', function () {
+
     let selectedCategory = category.value;
+    if (selectedCategory) {
+        let quotesCategory = quotes[selectedCategory];
+        let randomNumber = Math.floor(Math.random() * quotesCategory.length);
+        let randomQuote = quotesCategory[randomNumber];
 
-    let quotesCategory = quotes[selectedCategory];
-    let randomNumber = Math.floor(Math.random() * quotesCategory.length);
-    let randomQuote = quotesCategory[randomNumber];
-
-    quoteDisplay.innerText = randomQuote.text;
+        quoteDisplay.innerText = randomQuote.text;
+    }
+    else {
+        alert('Please Select a Category first')
+    }
 
 })
 
