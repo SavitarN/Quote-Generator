@@ -187,6 +187,12 @@ select {
   color: white;
   border-color: #9bec00;
 }
+.dark-mode .title {
+  color: white;
+}
+.dark-mode .theme-text {
+  color: white;
+}
 body,
 .mainContainer,
 .quote-display,
@@ -196,9 +202,12 @@ select {
 }
 /* Switch Toggle */
 .theme-switcher {
+  display: flex;
+
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 18px;
+  gap: 10px;
 }
 
 .switch {

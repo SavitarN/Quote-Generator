@@ -157,18 +157,25 @@ category.addEventListener('change', updateQuotesForCategory);
 
 //next quote//
 nextBtn.addEventListener('click', function () {
-    if (currentCategoryQuotes.length > 0) {
-        currentIndex = (currentIndex + 1) % currentCategoryQuotes.length; // Loop around
-        displayQuote(currentIndex);
+    if (!category.value) {
+        alert('please select a category')
     }
+
+    currentIndex = (currentIndex + 1) % currentCategoryQuotes.length; // Loop around
+    displayQuote(currentIndex);
+
+
 });
 
 //previous code//
 prevBtn.addEventListener('click', function () {
-    if (currentCategoryQuotes.length > 0) {
-        currentIndex = (currentIndex - 1 + currentCategoryQuotes.length) % currentCategoryQuotes.length; // Loop around
-        displayQuote(currentIndex);
+    if (!category.value) {
+        alert('please select a category')
     }
+    currentCategoryQuotes.length > 0
+    currentIndex = (currentIndex - 1 + currentCategoryQuotes.length) % currentCategoryQuotes.length; // Loop around
+    displayQuote(currentIndex);
+
 });
 document.getElementById('theme-toggle').addEventListener('change', function () {
     document.body.classList.toggle('dark-mode');
