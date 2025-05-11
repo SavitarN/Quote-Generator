@@ -157,14 +157,6 @@ prevBtn.addEventListener('click', function () {
         displayQuote(currentIndex);
     }
 });
-
-
-themeToggleSwitch.addEventListener('change', function () {
-
-    if (this.checked) {
-        body.classList.add('dark-mode');
-    } else {
-        body.classList.remove('dark-mode');
-    }
+document.getElementById('theme-toggle').addEventListener('change', function () {
+    document.body.classList.toggle('dark-mode');
 });
-
