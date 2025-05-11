@@ -104,19 +104,33 @@ category.addEventListener('change', function () {
     }
 
 })
-randomBtn.addEventListener('click', function () {
+const random = () => {
+    const objLength = Object.keys(quotes).length;
+    const randomArrayNumber = Math.floor(Math.random() * objLength);
+    const randomCategoryNumber = Math.floor(Math.random() * quotes.science.length);
+    console.log(randomArrayNumber)
+    console.log(randomCategoryNumber)
+    const randomQuote = quotes[randomArrayNumber === 0 ? 'science' : randomArrayNumber === 1 ? 'life' : 'philosophy'][randomCategoryNumber];
+    console.log(randomQuote)
+    quoteDisplay.innerText = randomQuote.text;
 
-    let selectedCategory = category.value;
-    if (selectedCategory) {
+}
+random();
+randomBtn.addEventListener('click', function () {
+    console.log(category.target);
+    const selectedCategory = category.value;
+    if (!selectedCategory) {
+        random();
+    }
+    else {
         let quotesCategory = quotes[selectedCategory];
         let randomNumber = Math.floor(Math.random() * quotesCategory.length);
         let randomQuote = quotesCategory[randomNumber];
 
         quoteDisplay.innerText = randomQuote.text;
     }
-    else {
-        alert('Please Select a Category first')
-    }
+
+
 
 })
 
@@ -136,7 +150,6 @@ function updateQuotesForCategory() {
     currentIndex = 0;
 
 
-    console.log(currentCategoryQuotes);
 
 }
 
